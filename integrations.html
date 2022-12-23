@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations</title>
+    <link rel="stylesheet" href="./styles/integrations.css">
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <script src="https://kit.fontawesome.com/b3bad2b493.js" crossorigin="anonymous"></script>
+   <style>
+    
+   </style>
+</head>
+<body>
+    <div class="display">
+        <div class="logo">
+            <a href="https://trackingtime.co/" itemprop="url">
+                <img src="https://trackingtime.co/wp-content/themes/trackingtime-v4/img/layout/header/logo.svg"
+                    alt="TrackingTime">
+            </a>
+    
+        </div>
+        <div class="navigation">
+            <a href="integrations.html">INTEGRATIONS</a>
+            <a href="blog.html">BLOG</a>
+           <ul name="FEATURES" id="feature" >FEATURES <i class="fa-solid fa-chevron-down"></i>
+            <ul id="calloption">
+                <li><a href="timetraker.html">Time Tracker</a></li>
+                <li><a href="Project-manger.html">Project Management</a></li>
+                <li><a href="online-timesheet.html">Online Timesheet</a></li>
+                <li><a href="time-cards.html">Time Cards</a></li>
+                <li><a href="attendance-tracker.html">Attendence Tracking</a></li>
+                <li><a href="time_reporting.html">Time Reporting</a></li>
+            </ul>
+           </ul>
+            <button id= "free"><a href="login.html">Try it Free</a></button>
+            <button id="login"><a href="login.html">LOGIN</a></button>
+        </div>
+    
+    </div>
+
+    </div>
+        <div id="integrations">
+             <h2 id="chrome">TRACKING TIME BUTTON FOR CHROME</h2>
+             <h1>Tracking Time</h1>
+             <h1>Integrations</h1>
+             <h2 id="youAll">TIME TRACKING INETGRATIONS THAT YOU'LL LOVE</h2>
+             <input type="text" name="" id="search" oninput="displayFunc()" placeholder="SEARCH YOUR FAVOURITE APP!">
+            
+        </div>
+        <div id="paras">
+            <p>Improve your time tracking and increase your productivity with these Integrations. <br>
+            See how much time you spend on each task or project! TrackingTime's integrations make it easy to keep track of your billable and non-billable tasks by integrating with more than 30 apps. </p>
+            <p>TrackingTime can be integrated with other apps, such as project management, accounting, and customer support. Get instant timesheets and analytics with TrackingTime!</p>
+        </div>
+       
+           <div id="articles">
+                <p></p>
+           </div>
+        </div>
+        <div id="container"></div>
+        <div id="download">
+            <div id="mobile"><img src="https://trackingtime.co/wp-content/themes/trackingtime-v4/img/temp/home/download-section/phone.png" alt=""></div>
+            <div>
+                <h2>Track Everywhere</h2>
+                <p>Track your time everywhere you work with our mobile apps for iOS and Android.</p>
+                <img src="https://trackingtime.co/wp-content/themes/trackingtime-v4/img/temp/home/download-section/playstore.png" alt="">
+                <img  src="https://trackingtime.co/wp-content/themes/trackingtime-v4/img/temp/home/download-section/apstore.png" alt="">
+            </div>
+        </div>
+        <div class="container8">
+            <img class="ttimg" style="width: 100px;" src="https://trackingtime.co/wp-content/themes/trackingtime-v4/img/layout/footer/tt.svg"
+                alt="TrackingTime">
+            <h4>Get Started</h4>
+            <p class="getp">Sign up today and join thousands of people around the world using <br>
+                TrackingTime to make the most of their time.</p>
+            <div class="googlelink">
+                <div class="chowmein">
+                    <input type="text" id="know" placeholder="Your Work Email">
+                    <a href="login.html" id="know1">Start For Free</a>
+    
+                </div>
+                <p id="burger">14-day PRO trial included</p>
+                <div class="linkbazzi">
+                    <img src="https://trackingtime.co/wp-content/themes/trackingtime-v4/img/keywords/google-key.png"
+                        alt="google icon">
+                    <a href="https://app.trackingtime.co/v4/google/signin?action=signup&amp;redirect_to=https://pro.trackingtime.co/"
+                        data-comp="SignupWithGoogle" target="_blank" id="alpha">Sign in with Google</a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="footer"></div>
+</body>
+<script>
+    
+     async function reader(){
+        try{
+            let base = await fetch (`https://basic-api-list.herokuapp.com/apps`);
+            let read = await base.json();
+            // console.log(read)
+    
+            display(read);
+        }
+        catch(error){
+            console.log(12345)
+        }
+    }
+   reader();
+
+    function display(read){
+        // console.log("cool")
+        document.querySelector('#container').innerHTML = '';
+        read.forEach(function(element,ind){
+
+              let divi = document.createElement('div');
+            divi.addEventListener("click",function(){
+                window.location.href = element.page;
+                      console.log(ind)
+                   })
+            let pic = document.createElement('img');
+            pic.src = element.imageUrl;
+            let he = document.createElement('h1');
+            he.innerText = element.title;
+            let desc = document.createElement('p');
+             desc.innerText = element.des;
+            divi.append(pic,he,desc);
+            document.querySelector('#container').append(divi)
+        })
+           
+        
+        
+        
+    }
+
+
+    
+       let arr = [];
+   async   function displayFunc(){
+    let searched = document.querySelector('#search').value;
+
+          try{
+            let base = await fetch(`https://basic-api-list.herokuapp.com/apps`);
+            let read = await base.json();
+              console.log(read);
+              console.log(searched)
+            
+              for(let i=0;i<read.length;i++){
+                if(searched == read[i].title){
+                    arr.push(read[i]);
+                    display(arr)
+                }
+              }
+          }
+            catch(error){
+                console.log(1234)
+            }
+      }
+   
+</script>
+<script type="module">
+    import navbar1 from './commonarea/footer.js'
+  
+  let   footer=document.getElementById("footer");
+    footer.innerHTML=navbar1;
+</script>
+<script>
+    function getlogin(){
+        window.location.href="login.html"
+    }
+    function getsignup(){
+        window.location.href="signup.html"
+    }
+</script>
+</html>
